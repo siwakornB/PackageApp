@@ -1,4 +1,3 @@
-
 @extends('page_layout')
 @section('content')
 @if(Session::has('success'))
@@ -48,7 +47,7 @@
                         
 
 
-            <table class="table table-bordered table-striped">
+            <table id="dtpackage" class="table table-bordered table-striped table-hover">
             <tr>
                 <th>รหัสทรัพย์สิน</th>
                 <th>ชื่อทรัพย์สิน</th>
@@ -61,7 +60,7 @@
                 @foreach($columns as $col)
                     <td>{{$row->$col}}</td>
                 @endforeach
-                    <td><a href="{{ action('Userscontroller@edit',[$row->รหัส] ) }}" class="btn btn-warning">Edit</a>
+                    <td><a href="{{ action('Userscontroller@edit',$row->รหัส) }}" class="btn btn-warning">Edit</a>
                         <form method="post" class="delete_form" action="{{action('Userscontroller@destroy',$row->รหัส)}}">
                         {{csrf_field()}}
 
@@ -72,8 +71,8 @@
                 </tr>
             @endforeach
             </table>
-
-
+@stop
+@push('scripts')
             <script type="text/javascript">
             $(document).ready(function(){
                 $('.delete_form').on('submit',function(){
@@ -82,7 +81,7 @@
                     }else{
                         return false;
                     }
-                });
-            });
+                })
+            })
             </script>
-@stop
+@endpush

@@ -69,8 +69,8 @@ class Userscontroller extends Controller
     {
         $value=DB::table('package52')->where('รหัส','=',$id)->get();
         $columns = Schema::getColumnListing('package52');
-        return dd($id);
-        return view('edit',compact(['value','columns']));
+        //return dd($id);
+        return view('edit',compact('value','columns','id'));
     }
 
     /**
@@ -82,7 +82,11 @@ class Userscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['รหัส' => 'required']);
+        $columns = Schema::getColumnListing('package52');
+        DB::table('package52')->where('รหัส','=',$id)->update(['รหัส' => $request->get('รหัส')]);
+        
+        return back()->with('success','update successful');
     }
 
     /**

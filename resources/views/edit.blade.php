@@ -5,17 +5,17 @@
         <p>{{ Session::get('success')}}</p>
     </div>
 @endif
-    <form method="POST" action="{{ route('add.update') }}">
+    <form method="post" action="{{ action('Userscontroller@update',$id) }}">
         {{csrf_field()}}
+        @method('patch')
+        <div class="form-group">
         @foreach($value as $key => $row)
             @foreach($columns as $col)
-        <div class="form-group">
-            <input type="text" name="{{ $col }}" class="form-control" placeholder="{{$row->$col}}" />
-        </div>
+            <p>{{ $col }}</p>
+            <input type="text" name="{{ $col }}" class="form-control" placeholder="{{$row->$col}}" value="{{$row->$col}}"/>
+            <br>
             @endforeach
         @endforeach
-        <div class="form-group">
-            <input type="text" name="pass" class="form-control" placeholder="2" />
         </div>
         <div class="form-group">
             <input type='file' name='file' >
@@ -24,3 +24,4 @@
             </button>
         </div>
     </form>
+@stop
