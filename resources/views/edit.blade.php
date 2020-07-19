@@ -5,7 +5,7 @@
         <p>{{ Session::get('success')}}</p>
     </div>
 @endif
-    <form method="post" action="{{ action('Userscontroller@update',$id) }}">
+    <form method="post" action="{{ action('HomeController@update',$id) }}">
         {{csrf_field()}}
         @method('patch')
         <div class="form-group">

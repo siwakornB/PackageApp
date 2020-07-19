@@ -47,21 +47,23 @@
                         
 
 
-            <table id="dtpackage" class="table table-bordered table-striped table-hover">
-            <tr>
+            <table id="dtpackage" class="table table-striped" cellspacing="0" width="100%">
+            <thead>
                 <th>รหัสทรัพย์สิน</th>
                 <th>ชื่อทรัพย์สิน</th>
                 <th>วันที่ทรัพย์สิน</th>
                 <th>ราคา/หน่วย</th>
                 <th>หน่วยงาน</th>
-            </tr>
+                <th>Acions</th>
+            </thead>
+            <tbody>
             @foreach($value as $key => $row)
                 <tr>
                 @foreach($columns as $col)
                     <td>{{$row->$col}}</td>
                 @endforeach
-                    <td><a href="{{ action('Userscontroller@edit',$row->รหัส) }}" class="btn btn-warning">Edit</a>
-                        <form method="post" class="delete_form" action="{{action('Userscontroller@destroy',$row->รหัส)}}">
+                    <td><a href="{{ action('HomeController@edit',$row->รหัส) }}" class="btn btn-warning">Edit</a>
+                        <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->รหัส)}}">
                         {{csrf_field()}}
 
                         @method('delete')
@@ -70,18 +72,18 @@
                     </td>
                 </tr>
             @endforeach
+            </tbody>
             </table>
 @stop
 @push('scripts')
             <script type="text/javascript">
-            $(document).ready(function(){
-                $('.delete_form').on('submit',function(){
-                    if(confirm("R U sure?")){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                })
-            })
+            
+
+            $(document).ready( function () {
+                $('#dtpackage').DataTable();
+            } );
+        
             </script>
+
+
 @endpush

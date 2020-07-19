@@ -13,13 +13,13 @@
     </div>
     <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active" href="#">menu</a>
+                <a class="nav-link active" href="{{ route('home') }}">หน้าหลัก</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">menu2</a>
+                <a class="nav-link" href="{{ route('Packages_register') }}">ลงทะเบียน</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">menu3</a>
+                <a class="nav-link" href="{{ route('search') }}">ค้นหา</a>
             </li>
     </ul> 
     
