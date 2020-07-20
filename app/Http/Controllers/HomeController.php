@@ -40,7 +40,6 @@ class HomeController extends Controller
         //return dd($value);
         return view('content',compact(['value','columns']));
     }
-
     public function search_page(){
         return ;
     }
