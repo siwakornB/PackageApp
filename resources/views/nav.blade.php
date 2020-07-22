@@ -12,6 +12,7 @@
     
     </div>
     <ul class="nav nav-pills">
+            @if(Auth::check())
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('home') }}">หน้าหลัก</a>
             </li>
@@ -22,6 +23,7 @@
                 <a class="nav-link" href="{{ route('search') }}">ค้นหา</a>
             </li>
             <li class="nav-item dropdown">
+                    
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
@@ -38,6 +40,7 @@
                     </form>
                 </div>
             </li>
+            @endif
     </ul> 
     
 </nav>
