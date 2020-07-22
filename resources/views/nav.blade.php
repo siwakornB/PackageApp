@@ -16,9 +16,11 @@
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('home') }}">หน้าหลัก</a>
             </li>
+            @can('package-create')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('Packages_register') }}">ลงทะเบียน</a>
             </li>
+            @endcan
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('search') }}">ค้นหา</a>
             </li>

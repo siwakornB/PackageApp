@@ -27,7 +27,9 @@
                 <th>วันที่ทรัพย์สิน</th>
                 <th>ราคา/หน่วย</th>
                 <th>หน่วยงาน</th>
+                @can('package-edit')
                 <th>Acions</th>
+                @endcan
             </thead>
             <tbody>
             @foreach($value as $key => $row)
@@ -35,6 +37,7 @@
                 @foreach($columns as $col)
                     <td>{{$row->$col}}</td>
                 @endforeach
+                @can('package-create')
                     <td><a href="{{ action('HomeController@edit',$row->รหัส) }}" class="btn btn-warning">Edit</a>
                         <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->รหัส)}}">
                         {{csrf_field()}}
@@ -43,6 +46,7 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
+                @endcan
                 </tr>
             @endforeach
             </tbody>

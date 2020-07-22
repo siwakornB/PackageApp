@@ -19,6 +19,10 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:home|search|package-create|package-delete|package-edit', ['only' => ['index']]);
+        $this->middleware('permission:package-create', ['only' => ['store','Packages_register']]);
+        $this->middleware('permission:package-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:package-delete', ['only' => ['destroy']]);
     }
 
     /**
