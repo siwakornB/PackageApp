@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,7 @@ Route::get('/packages_register', 'HomeController@Packages_register')->name('Pack
 Route::get('/search', 'HomeController@search')->name('search');
 Route::post('/store', 'HomeController@store')->name('store');
 Route::get('/edit/{edit}', 'HomeController@edit')->name('edit');
-Route::patch('/update/{update}', 'HomeController@update')->name('update');
+Route::post('/update/{update}', 'HomeController@update')->name('update');
 Route::delete('/destroy/{destroy}', 'HomeController@destroy')->name('destroy');
 
 

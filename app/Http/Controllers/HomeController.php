@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\FacultyUsers;
+use App\ImageUpload;
 use Illuminate\Support\Facades\DB;
 use Schema;
 use Kyslik\ColumnSortable\Sortable;
@@ -33,11 +34,13 @@ class HomeController extends Controller
     public function index()
     {
         
-        $columns = array('รหัส',
+        $columns = array('Id',
+        'รหัส',
         'ยี่ห้อ',
+        'ชื่อรายการ',
         'วันเดือนปี',
         'ราคาต่อหน่วย',
-        'หน่วยงาน');
+        );
         $value=DB::table('package52')->select($columns)->get();
         //$columns = Schema::getColumnListing('package52');
         //$value = $value->toArray();
@@ -56,20 +59,25 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,['user' => 'required','pass'=>'required']);
+        $this->validate($request,['รหัส' => 'required']);
         
-        $user = new FacultyUsers(['user' =>$request->get('user'),'pass' => $request->get('pass')]);
-        $user->save();
-        return back()->with('success','fuck u');
+        //$user = new ImageUpload(['รหัส' =>$request->get('user'),'path' => $request->get('pass')]);
+        $imageName = request()->file->getClientOriginalName();
+        return dd($request,$imageName);
+        //return back()->with('success','fuck u');
         //return $request->input();
     }
 
     public function edit($id)
     {
-        $value=DB::table('package52')->where('รหัส','=',$id)->get();
+        $value=DB::table('package52')->where('Id','=',$id)->get();
+        $path=DB::table('image_uploads')->where('Id','=',$id)->get();
         $columns = Schema::getColumnListing('package52');
         //return dd($id);
-        return view('edit',compact('value','columns','id'));
+        if($path == '')
+            return view('edit',compact('value','columns','id'));
+        else
+            return view('edit',compact('value','columns','id','path'));
     }
 
     /**
@@ -82,8 +90,26 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,['รหัส' => 'required']);
-        $columns = Schema::getColumnListing('package52');
-        DB::table('package52')->where('รหัส','=',$id)->update(['รหัส' => $request->get('รหัส')]);
+        
+        
+        if($request->hasFile('file'))
+        {  
+            $files = $request->file('file');
+            //return dd($files);
+            foreach($files as $f){
+                //return dd($f);
+                $imageName = $f->getClientOriginalName();
+                $path = $f->move(public_path('upload'), $imageName);
+                $img = new ImageUpload(['Package_Id' =>$id,'path' => $path]);
+                $img->save();
+            }
+            
+            // = $request->image->storeAs('path/to/save/the/file', $imageName);
+            
+        }
+
+        //$columns = Schema::getColumnListing('package52');
+        //DB::table('package52')->where('รหัส','=',$id)->update(['รหัส' => $request->get('รหัส')]);
         
         return back()->with('success','update successful');
     }

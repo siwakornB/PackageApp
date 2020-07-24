@@ -24,9 +24,9 @@
             <thead>
                 <th>รหัสทรัพย์สิน</th>
                 <th>ชื่อทรัพย์สิน</th>
+                <th>ชื่อรายการ</th>
                 <th>วันที่ทรัพย์สิน</th>
                 <th>ราคา/หน่วย</th>
-                <th>หน่วยงาน</th>
                 @can('package-edit')
                 <th>Acions</th>
                 @endcan
@@ -35,11 +35,13 @@
             @foreach($value as $key => $row)
                 <tr>
                 @foreach($columns as $col)
+                    @if($col != 'Id')
                     <td>{{$row->$col}}</td>
+                    @endif
                 @endforeach
                 @can('package-create')
-                    <td><a href="{{ action('HomeController@edit',$row->รหัส) }}" class="btn btn-warning">Edit</a>
-                        <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->รหัส)}}">
+                    <td><a href="{{ action('HomeController@edit',$row->Id) }}" class="btn btn-warning">Edit</a>
+                        <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->Id)}}">
                         {{csrf_field()}}
 
                         @method('delete')

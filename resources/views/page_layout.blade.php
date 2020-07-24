@@ -20,10 +20,14 @@
     <!-- For table style -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    
+    <!-- File dropzone -->
+    <script src="{{ asset('js\kartik-v-bootstrap-fileinput-043694a\js\fileinput.min.js') }}"></script>
+    <script src="{{ asset('js\kartik-v-bootstrap-fileinput-043694a\themes\fas\theme.js') }}"></script>
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/kartik-v-bootstrap-fileinput-043694a/css/fileinput.min.css') }}">
+    
     <!-- Custom JS -->
-    <script src="{{ asset('js/text.js')}}"></script>
+    <script src=""></script>
             
     <!-- Fonts -->
     

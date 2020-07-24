@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="collapse navbar-collapse">
         <a href="/" class="navbar-brand">
-            <img src="image/logo02-300x270.png" href="/" 
+            <img src="{{ asset('image/logo02-300x270.png')}}" href="/" 
             alt="log not found" class="logo" height="130" width="150">
         </a>
         
@@ -18,7 +18,7 @@
             </li>
             @can('package-create')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('Packages_register') }}">ลงทะเบียน</a>
+                <a class="nav-link" href="{{ route('Packages_register') }}">ลงทะเบียนคุรุภัณฑ์</a>
             </li>
             @endcan
             <li class="nav-item">
