@@ -71,13 +71,14 @@ class HomeController extends Controller
     public function edit($id)
     {
         $value=DB::table('package52')->where('Id','=',$id)->get();
-        $path=DB::table('image_uploads')->where('Id','=',$id)->get();
+        $path=DB::table('image_uploads')->select('Id','path')->where('Package_Id','=',$id)->get();
+        //$path = (array)$path;
         $columns = Schema::getColumnListing('package52');
-        //return dd($id);
-        if($path == '')
-            return view('edit',compact('value','columns','id'));
-        else
+        //return dd($path,$id);
+        if($path)
             return view('edit',compact('value','columns','id','path'));
+        else
+            return view('edit',compact('value','columns','id'));
     }
 
     /**
@@ -99,7 +100,8 @@ class HomeController extends Controller
             foreach($files as $f){
                 //return dd($f);
                 $imageName = $f->getClientOriginalName();
-                $path = $f->move(public_path('upload'), $imageName);
+                $f->move(public_path('upload'), $imageName);
+                $path = 'upload/'.$imageName;
                 $img = new ImageUpload(['Package_Id' =>$id,'path' => $path]);
                 $img->save();
             }

@@ -16,10 +16,18 @@
             <br>
             @endforeach
         @endforeach
+        </div> 
+        <div class="media">
+            @isset($path)
+                @foreach($path as $p => $e)
+                <img src="{{ asset($e->path)}}" class="img-thumbnail img-fluid">
+                @endforeach
+            @else
+                <h1>No image found</h1>
+            @endif
         </div>
         <div class="form-group">
                 <input id="file-1" type="file" name="file[]" multiple>
-            
         </div>
             <button type="submit" class="btn btn-primary">
             {{ __('submit') }}
@@ -30,10 +38,6 @@
 @stop
 @push('scripts')
 <script type="text/javascript">
-    if(path != ''){
-        foreach
-    }
-
     $("#file-1").fileinput({
             theme: "fas",
             uploadAsync: true,
@@ -50,12 +54,11 @@
             removeIcon : "<i class='fas fa-trash-alt'></i>",
             browseIcon : "<i class='fas fa-search-plus'></i>",
 
-            initialPreview: [url1, url2],
-            initialPreviewAsData: true,
-            initialPreviewConfig: [
-            {caption: "Moon.jpg", downloadUrl: url1, size: 930321, width: "120px", key: 1},
-            {caption: "Earth.jpg", downloadUrl: url2, size: 1218822, width: "120px", key: 2}
-        ],
+            defaultPreviewContent: '',
+            initialPreviewAsData: false, // allows you to set a raw markup
+            initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+            
+            
         });
 </script>
 @endpush

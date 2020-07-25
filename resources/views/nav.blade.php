@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="collapse navbar-collapse">
-        <a href="/" class="navbar-brand">
-            <img src="{{ asset('image/logo02-300x270.png')}}" href="/" 
+        <a href="/home" class="navbar-brand">
+            <img src="{{ asset('image/logo02-300x270.png')}}"
             alt="log not found" class="logo" height="130" width="150">
         </a>
         

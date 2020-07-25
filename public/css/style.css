@@ -45,19 +45,8 @@ table.dataTable thead .sorting_desc_disabled:before {
 bottom: .5em;
 
 }
-
-@foreach($value as $key => $row)
-                <tr>
-                @foreach($columns as $col)
-                    <td>{{$row->$col}}</td>
-                @endforeach
-                    <td><a href="{{ action('Userscontroller@edit',$row->รหัส) }}" class="btn btn-warning">Edit</a>
-                        <form method="post" class="delete_form" action="{{action('Userscontroller@destroy',$row->รหัส)}}">
-                        {{csrf_field()}}
-
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+.img-thumbnail.img-fluid {
+    width: 20%;
+    height: 20%;
+    object-fit: cover;
+}
