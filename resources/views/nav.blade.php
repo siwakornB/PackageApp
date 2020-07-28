@@ -6,8 +6,8 @@
         </a>
         
         <div>
-            <h1 class="th-kmitl">พระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h1>
-            <h1 class="eng-kmitl">King Mongkut Institute of Technology Ladrabang</h1>
+            <h1 class="th-kmitl" style="font-family:Prompt">พระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h1>
+            <h1 class="eng-kmitl" style="font-family:Prompt">King Mongkut Institute of Technology Ladrabang</h1>
         </div>
     
     </div>

@@ -12,7 +12,7 @@
 <div class="container h-100">
     <div class="row justify-content-center">
         <div class="col-md-8 col-4">
-            <div class="card">
+            <div class="card" style="font-family:Prompt">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
