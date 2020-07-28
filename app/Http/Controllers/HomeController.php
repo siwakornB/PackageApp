@@ -168,9 +168,9 @@ class HomeController extends Controller
     }
 
     public function delimg($id)
-    {
-        $img = ImageUpload::find($id);
-        $img->delete();
+    {   
+        //return dd($id);
+        ImageUpload::find($id)->delete();
         return back()->with("success","Element has been deleted");
     }
 }

@@ -19,28 +19,32 @@
             @endforeach
         @endforeach
         </div> 
-        <div class="media">
-            @isset($path)
-                @foreach($path as $p => $e)
-                <img src="{{ asset($e->path)}}" class="img-thumbnail img-fluid" data-toggle="modal" href="#myModal" id="img{{ $e->Id }}" 
-                    onclick="showImage(this,img{{ $e->Id }}">
-                    <button type="submit" class="btn btn-danger" href="{{ URL::to('HomeController@delimg',$e->Id)}}">Delete</button>
-                @endforeach
-            @else
-                <h1>No image found</h1>
-            @endif
-        </div>
+        
         <div class="form-group">
                 <input id="file-1" type="file" name="file[]" multiple>
         </div>
             <button type="submit" class="btn btn-primary">
             {{ __('submit') }}
             </button>
-        
     </form>
+    <div class="media">
+            @isset($path)
+                @foreach($path as $p => $e)
+                <img src="{{ asset($e->path)}}" class="img-thumbnail img-fluid" data-toggle="modal" href="#myModal" id="img{{ $e->Id }}" 
+                    onclick="showImage(this,img{{ $e->Id }}">
+                <form method="post" action="{{ action('HomeController@delimg',$e->Id) }}" id="del-form">
+                {{csrf_field()}}
+                @method('delete')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                @endforeach
+            @else
+                <h1>No image found</h1>
+            @endif
+    </div>
 </div>
 
-<a data-toggle="modal" href="#myModal" class="btn btn-primary">Launch modal</a>
+<!-- <a data-toggle="modal" href="#myModal" class="btn btn-primary">Launch modal</a>-->
 
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
