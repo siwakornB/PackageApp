@@ -14,15 +14,15 @@
     <ul class="nav nav-pills">
             @if(Auth::check())
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('home') }}">หน้าหลัก</a>
+                <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="{{ route('home') }}">หน้าหลัก</a>
             </li>
             @can('package-create')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('Packages_register') }}">ลงทะเบียนคุรุภัณฑ์</a>
+                <a class="nav-link {{ request()->is('packages_register') ? 'active' : '' }}" href="{{ route('Packages_register') }}">ลงทะเบียนคุรุภัณฑ์</a>
             </li>
             @endcan
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('search') }}">ค้นหา</a>
+                <a class="nav-link {{ request()->is('search') ? 'active' : '' }}" href="{{ route('search') }}">ค้นหา</a>
             </li>
             <li class="nav-item dropdown">
                     
@@ -46,3 +46,11 @@
     </ul> 
     
 </nav>
+@push('scripts')
+<script type="text/javascript">
+    $('.navbar-nav .nav-link').click(function(){
+        $('.navbar-nav .nav-link').removeClass('active');
+        $(this).addClass('active');
+    })
+</script>
+@endpush

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\FacultyUsers;
 use App\ImageUpload;
+use App\Userlog;
 use Illuminate\Support\Facades\DB;
 use Schema;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class HomeController extends Controller
@@ -33,7 +36,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        return view('content');
+    }
+
+    public function search_page(){
+        $u = Auth::user()->roles->pluck('name');
+        //return dd(Auth::user()->id,$u,$u[0]);
+        $log = new Userlog(['log_name' => 'Index',
+        'description' => '',
+        'subject_id' => Auth::id(),
+        'subject_role' => $u[0]]);
+        $log->save();
         $columns = array('Id',
         'รหัส',
         'ยี่ห้อ',
@@ -47,11 +60,9 @@ class HomeController extends Controller
         //return dd($value);
         return view('content',compact(['value','columns']));
     }
-    public function search_page(){
-        return ;
-    }
 
     public function Packages_register(){
+        
         $columns = Schema::getColumnListing('package52');
         //return dd($id);
         return view('regis',compact('columns'));
@@ -59,17 +70,43 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $u = Auth::user()->roles->pluck('name');
+        //return dd(Auth::user()->id,$u,$u[0]);
+        $log = new Userlog(['log_name' => 'Index',
+        'description' => '',
+        'subject_id' => Auth::id(),
+        'subject_role' => $u[0]]);
+        $log->save();
+
         $this->validate($request,['รหัส' => 'required']);
         
-        //$user = new ImageUpload(['รหัส' =>$request->get('user'),'path' => $request->get('pass')]);
-        $imageName = request()->file->getClientOriginalName();
-        return dd($request,$imageName);
-        //return back()->with('success','fuck u');
-        //return $request->input();
+        if($request->hasFile('file'))
+        {  
+            $files = $request->file('file');
+            //return dd($files);
+            foreach($files as $f){
+                //return dd($f);
+                $imageName = $f->getClientOriginalName();
+                $f->move(public_path('upload'), $imageName);
+                $path = 'upload/'.$imageName;
+                $img = new ImageUpload(['Package_Id' =>$id,'path' => $path]);
+                $img->save();
+            }
+            
+            // = $request->image->storeAs('path/to/save/the/file', $imageName);
+            
+        }
+
+        //$columns = Schema::getColumnListing('package52');
+        //DB::table('package52')->where('รหัส','=',$id)->update(['รหัส' => $request->get('รหัส')]);
+        
+        return back()->with('success','update successful');
+        
     }
 
     public function edit($id)
     {
+        //$log = new Userlog('create','','','');
         $value=DB::table('package52')->where('Id','=',$id)->get();
         $path=DB::table('image_uploads')->select('Id','path')->where('Package_Id','=',$id)->get();
         //$path = (array)$path;
@@ -127,6 +164,13 @@ class HomeController extends Controller
         /*$user = FacultyUsers::find($id);
         $user->delete();*/
         DB::table('package52')->where('รหัส', '=', $id)->delete();
+        return back()->with("success","Element has been deleted");
+    }
+
+    public function delimg($id)
+    {
+        $img = ImageUpload::find($id);
+        $img->delete();
         return back()->with("success","Element has been deleted");
     }
 }

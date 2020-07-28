@@ -13,7 +13,7 @@ class CreateImageUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('image_uploads');
+        //Schema::dropIfExists('image_uploads');
         Schema::create('image_uploads', function (Blueprint $table) {
             $table->bigIncrements('Id');
             $table->bigInteger('Package_Id');

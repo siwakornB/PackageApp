@@ -1,4 +1,5 @@
 @extends('page_layout')
+@section('title','ค้นหา')
 @section('content')
 @if(Session::has('success'))
     <div class="alert alert-success">
@@ -39,7 +40,7 @@
                     <td>{{$row->$col}}</td>
                     @endif
                 @endforeach
-                @can('package-create')
+                @can('package-edit')
                     <td><a href="{{ action('HomeController@edit',$row->Id) }}" class="btn btn-warning">Edit</a>
                         <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->Id)}}">
                         {{csrf_field()}}
@@ -61,9 +62,11 @@
             $(document).ready( function () {
                 $('#dtpackage').DataTable(
                     {
+                        @can('package-edit')
                         "columnDefs": [
                             { "orderable": false, "targets": [5] },
                         ]
+                        @endcan
                 }
                 );
             });

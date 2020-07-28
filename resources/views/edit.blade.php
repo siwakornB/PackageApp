@@ -1,4 +1,5 @@
 @extends('page_layout')
+@section('title',$id)
 @section('content')
 @if(Session::has('success'))
     <div class="alert alert-success">
@@ -8,6 +9,7 @@
 <div class="container col-10">
     <form method="post" action="{{ action('HomeController@update',$id) }}" id="form" enctype='multipart/form-data'>
         {{csrf_field()}}
+        @method('patch')
         <div class="form-group">
         @foreach($value as $key => $row)
             @foreach($columns as $col)
@@ -20,7 +22,9 @@
         <div class="media">
             @isset($path)
                 @foreach($path as $p => $e)
-                <img src="{{ asset($e->path)}}" class="img-thumbnail img-fluid">
+                <img src="{{ asset($e->path)}}" class="img-thumbnail img-fluid" data-toggle="modal" href="#myModal" id="img{{ $e->Id }}" 
+                    onclick="showImage(this,img{{ $e->Id }}">
+                    <button type="submit" class="btn btn-danger" href="{{ URL::to('HomeController@delimg',$e->Id)}}">Delete</button>
                 @endforeach
             @else
                 <h1>No image found</h1>
@@ -35,6 +39,38 @@
         
     </form>
 </div>
+
+<a data-toggle="modal" href="#myModal" class="btn btn-primary">Launch modal</a>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                	<h4 class="modal-title">A</h4>
+
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">Content for the dialog / modal goes here.
+                <br>
+                <br>
+                <br>
+                <img class="modal-content" id="img">
+                <br>
+                <br>
+                <br>
+
+            </div>
+            <div class="modal-footer">	
+                <a href="#" data-dismiss="modal" class="btn">Close</a>
+                <button type="submit" class="btn btn-danger waves-effect remove-data-from-delete-form">Delete</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
 @stop
 @push('scripts')
 <script type="text/javascript">
@@ -60,5 +96,29 @@
             
             
         });
+
+        $(document).ready(function () {
+
+        $('#openBtn').click(function () {
+            $('#myModal').modal({
+                show: true
+            })
+        });
+
+        $(document).on('show.bs.modal', '.modal', function (event) {
+            var zIndex = 1040 + (10 * $('.modal:visible').length);
+            console.log($(this).closest("img"));
+            $(this).css('z-index', zIndex);
+            setTimeout(function() {
+                $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            }, 0);
+        });
+
+        
+        
+        });
+
+        
+
 </script>
 @endpush
