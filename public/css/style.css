@@ -39,12 +39,12 @@ html {
 .card {
     display: flex;
     background: white;
-    margin-top: 20%;
-    margin-left: 15%;
     width: 500px;
     height: max-content;
     text-align: left;
     position: absolute;
+    margin-top: 20%;
+    margin-left: 15%;
     border-radius: 15px;
 }
 
