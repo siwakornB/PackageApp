@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
     <div class="collapse navbar-collapse">
         <a href="/home" class="navbar-brand">
             <img src="{{ asset('image/logo02-300x270.png')}}"
-            alt="log not found" class="logo" height="130" width="150">
+            alt="log not found" class="logo" height="110" width="130">
         </a>
         
         <div>
-            <h1 class="th-kmitl" style="font-family:Prompt">พระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h1>
-            <h1 class="eng-kmitl" style="font-family:Prompt">King Mongkut Institute of Technology Ladrabang</h1>
+            <h1 style="font-family:Prompt" class="header1">ระบบทะเบียนสินทรัพย์</h1>
+            <h1 style="font-family:Prompt" class="header2">สถาบันพระจอมเกล้าเจ้าคุณทหารลาดกระบัง <br>King Mongkut Institute of Technology Ladrabang</h1>
         </div>
     
     </div>
