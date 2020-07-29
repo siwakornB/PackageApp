@@ -1,6 +1,11 @@
-@extends('layouts.app')
-
+@extends('page_layout')
+@section('title','ค้นหา')
 @section('content')
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        <p>{{ Session::get('success')}}</p>
+    </div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -20,4 +25,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

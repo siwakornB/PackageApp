@@ -1,5 +1,11 @@
-@extends('layouts.app')
+@extends('page_layout')
+@section('title','ค้นหา')
 @section('content')
+@if(Session::has('success'))
+    <div class="alert alert-success">
+        <p>{{ Session::get('success')}}</p>
+    </div>
+@endif
 <div class="row">
 <div class="col-lg-12 margin-tb">
 <div class="pull-left">
@@ -58,4 +64,4 @@
 </div>
 {!! Form::close() !!}
 <p class="text-center text-primary"><small>Tutorial by rscoder.com</small></p>
-@endsection
+@stop

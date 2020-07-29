@@ -30,12 +30,20 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
+                    
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                    @can('role-list')
+                    <a class="dropdown-item" href="{{ route('users.index') }}">Manage Users</a>
+                    <a class="dropdown-item" href="{{ route('roles.index') }}">Manage Role</a>
+                    @endcan
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
+                    
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

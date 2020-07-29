@@ -9,7 +9,7 @@
 <div class="container col-10">
     <form method="post" action="{{ action('HomeController@update',$id) }}" id="form" enctype='multipart/form-data'>
         {{csrf_field()}}
-        @method('patch')
+        @method('put')
         <div class="form-group">
         @foreach($value as $key => $row)
             @foreach($columns as $col)

@@ -36,7 +36,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('content');
+        return view('home');
     }
 
     public function search_page(){
