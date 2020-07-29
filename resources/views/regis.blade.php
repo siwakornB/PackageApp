@@ -12,7 +12,7 @@
 @endif
 <div id="edit_page" class="container col-12" style="font-family:Prompt">
     <br>
-    <h1>รายละเอียดข้อมูลสินทรัพย์</h1>
+    <h1>ลงทะเบียนสินทรัพย์</h1>
     <br>
         <form method="post" action="{{ action('HomeController@store') }}" id="form" enctype='multipart/form-data'>
             {{csrf_field()}}

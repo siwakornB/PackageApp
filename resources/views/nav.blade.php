@@ -11,7 +11,7 @@
         </div>
     
     </div>
-    <ul class="nav nav-pills">
+    <ul class="nav nav-pills" style="font-family:Prompt">
             @if(Auth::check())
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="{{ route('home') }}">หน้าหลัก</a>
@@ -35,13 +35,13 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                     @can('role-list')
-                    <a class="dropdown-item" href="{{ route('users.index') }}">Manage Users</a>
-                    <a class="dropdown-item" href="{{ route('roles.index') }}">Manage Role</a>
+                    <a class="dropdown-item" href="{{ route('users.index') }}">จัดการบัญชีผู้ใช้</a>
+                    <a class="dropdown-item" href="{{ route('roles.index') }}">จัดการบทบาทผู้ใช้</a>
                     @endcan
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('ออกระบบ') }}
                     </a>
                     
 
