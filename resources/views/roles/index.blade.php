@@ -6,14 +6,17 @@
         <p>{{ Session::get('success')}}</p>
     </div>
 @endif
+<div id="role_management" style="font-family:Prompt">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
+                <br>
                 <h2>Role Management</h2>
+                <br>
             </div>
         <div class="pull-right">
         @can('role-create')
-        <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
+        <a class="btn btn-success" href="{{ route('roles.create') }}">สร้าง Role ใหม่</a>
         @endcan
         </div>
     </div>
@@ -23,7 +26,7 @@
     <p>{{ $message }}</p>
     </div>
     @endif
-    <table class="table table-bordered">
+<table class="table table-bordered">
     <tr>
     <th>No</th>
     <th>Name</th>
@@ -34,19 +37,18 @@
     <td>{{ ++$i }}</td>
     <td>{{ $role->name }}</td>
     <td>
-    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">แสดง</a>
     @can('role-edit')
-    <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+    <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">แก้ไข</a>
     @endcan
     @can('role-delete')
     {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit('ลบ', ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
     @endcan
     </td>
     </tr>
     @endforeach
-    </table>
-    {!! $roles->render() !!}
-    <p class="text-center text-primary"><small>Tutorial by rscoder.com</small></p>
+</table>
+</div>
 @stop

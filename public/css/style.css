@@ -129,3 +129,33 @@ bottom: .5em;
     margin-right: 8%;
     margin-bottom: 10px;
 }
+
+#role_management{
+    margin-top: 20px;
+    background-color: white;
+    min-width: 800px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: white;
+    position: absolute;
+    width: 85%;
+    top: 25%;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 10px;
+}
+
+#user_management{
+    margin-top: 20px;
+    background-color: white;
+    min-width: 800px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: white;
+    position: absolute;
+    width: 85%;
+    top: 25%;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 10px;
+}
