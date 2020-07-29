@@ -26,7 +26,7 @@
     <p>{{ $message }}</p>
     </div>
     @endif
-<table class="table table-bordered">
+<table class="display  table-bordered" cellspacing="0" width="100%">
     <tr>
     <th>No</th>
     <th>Name</th>
@@ -50,5 +50,6 @@
     </tr>
     @endforeach
 </table>
+<br>
 </div>
 @stop
