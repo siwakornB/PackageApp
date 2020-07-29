@@ -20,8 +20,8 @@
                         @endguest
                         
 
-
-            <table id="dtpackage" class="table table-striped" cellspacing="0" width="100%">
+<div id="dataPackageTable">
+            <table id="dtpackage" class="display  table-bordered" cellspacing="0" width="100%">
             <thead>
                 <th>รหัสทรัพย์สิน</th>
                 <th>ชื่อทรัพย์สิน</th>
@@ -41,12 +41,12 @@
                     @endif
                 @endforeach
                 @can('package-edit')
-                    <td><a href="{{ action('HomeController@edit',$row->Id) }}" class="btn btn-warning">Edit</a>
+                    <td><a href="{{ action('HomeController@edit',$row->Id) }}" class="btn btn-warning">แก้ไข</a>
                         <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->Id)}}">
                         {{csrf_field()}}
 
                         @method('delete')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">ลบ</button>
                         </form>
                     </td>
                 @endcan
@@ -54,6 +54,7 @@
             @endforeach
             </tbody>
             </table>
+</div>
 @stop
 @push('scripts')
             <script type="text/javascript">

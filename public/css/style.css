@@ -65,8 +65,51 @@ table.dataTable thead .sorting_desc_disabled:before {
 bottom: .5em;
 
 }
+
 .img-thumbnail.img-fluid {
     width: 20%;
     height: 20%;
     object-fit: cover;
+}
+
+#dataPackageTable{
+    position: absolute;
+    background-color: rgb(255, 160, 97);
+    border-radius: 5px;
+    border-style: solid;
+    border-color: white;
+    font-family: "Prompt";
+    text-align: center;
+    margin-top: 30px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+.btn.btn-warning{
+    background-color: white; 
+    color: black; 
+    border: 1px solid #243c53;
+    border-radius: 5px;
+}
+
+.btn.btn-warning:hover {
+    background-color: rgb(36, 35, 34);
+    color: white;
+    border: 1px solid #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btn.btn-danger{
+    background-color: white; 
+    color: red; 
+    border: 1px solid #f71616;
+    border-radius: 5px;
+}
+
+.btn.btn-danger:hover{
+    background-color: #f73b3b;
+    color: white;
+    border: 1px solid #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
