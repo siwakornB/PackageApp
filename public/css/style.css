@@ -80,10 +80,11 @@ bottom: .5em;
     border-color: white;
     font-family: "Prompt";
     text-align: center;
-    margin-top: 30px;
-    margin-right: 40px;
-    margin-left: 40px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-top: 3%;
+    margin-right: 8%;
+    margin-left: 8%;
+    margin-bottom: 20px;
 }
 
 .btn.btn-warning{
