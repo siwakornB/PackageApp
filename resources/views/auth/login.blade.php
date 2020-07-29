@@ -1,14 +1,7 @@
 @extends('page_layout')
 
 @section('content')
-@if(count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul> @foreach($errors->all() as $er)
-            <li>{{$er}}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
 <div class="container h-100">
     <div class="row justify-content-center">
         <div class="col-md-8 col-4">
