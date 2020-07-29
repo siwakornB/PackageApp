@@ -5,6 +5,10 @@
     <div class="alert alert-success">
         <p>{{ Session::get('success')}}</p>
     </div>
+@elseif(Session::has('failed'))
+    <div class="alert alert-warning">
+        <p>{{ Session::get('failed')}}</p>
+    </div>
 @endif
 <div id="edit_page" class="container col-12" style="font-family:Prompt">
     <br>
@@ -12,7 +16,7 @@
     <br>
         <form method="post" action="{{ action('HomeController@update',$id) }}" id="form" enctype='multipart/form-data'>
             {{csrf_field()}}
-            @method('put')
+            @method('patch')
         <div class="row">
 
         <div class="col">

@@ -70,15 +70,59 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,['รหัส' => 'required']);
+        $ele = DB::table('package52')->select('รหัส')->where('รหัส','=',$request->get('รหัส'))->get();
+        //return dd($ele);
+        if(!$ele->isEmpty()){
+            $u = Auth::user()->roles->pluck('name');
+            //return dd(Auth::user()->id,$u,$u[0]);
+            $log = new Userlog(['log_name' => 'Attemp_to_Create',
+            'description' => 'duplicated with '.$request->get('รหัส'),
+            'subject_id' => Auth::id(),
+            'subject_role' => $u[0]]);
+            $log->save();
+            return back()->with('failed','รหัสนี้มีอยู่ในระบบอยู่แล้ว');
+        }
         $u = Auth::user()->roles->pluck('name');
         //return dd(Auth::user()->id,$u,$u[0]);
-        $log = new Userlog(['log_name' => 'Index',
-        'description' => '',
+        $log = new Userlog(['log_name' => 'Create',
+        'description' => $request->get('รหัส'),
         'subject_id' => Auth::id(),
         'subject_role' => $u[0]]);
         $log->save();
-
-        $this->validate($request,['รหัส' => 'required']);
+        DB::table('package52')->where('#')->insert([
+            'วนราชการ'  =>  'คณะวิศวะกรรมศาสตร์ สจล.',
+            'หน่วยงาน'   =>  $request->get('หน่วยงาน'),
+            'ประเภท'   =>  $request->get('ประเภท'),
+            'รหัส'   =>  $request->get('รหัส'),
+            'ยี่ห้อ'   =>  $request->get('ยี่ห้อ'),
+            'ชื่อผู้ขาย'   =>  $request->get('ชื่อผู้ขาย'),
+            'ที่อยู่ผู้ขาย'   =>  $request->get('ที่อยู่ผู้ขาย'),
+            'เบอร์ผู้ขาย'   =>  $request->get('เบอร์ผู้ขาย'),
+            'ประเภทเงิน'   =>  $request->get('ประเภทเงิน'),
+            'วิธีการได้มา'   =>  $request->get('วิธีการได้มา'),
+            'วันเดือนปี'   =>  $request->get('วันเดือนปี'),
+            'เอกสารเลขที่'   =>  $request->get('เอกสารเลขที่'),
+            'ชื่อรายการ'   =>  $request->get('ชื่อรายการ'),
+            'จำนวน'   =>  '1',
+            'ราคาต่อหน่วย'   =>  $request->get('ราคาต่อหน่วย'),
+            'อายุการใช้งาน'   =>  '',
+            'อัตราค่าเสื่อมราคา'   =>  '',
+            'ค่าเสื่อมราคาประจำปี'   =>  '',
+            'ค่าเสื่อมราคาสะสม'   =>  '',
+            'มูลค่าสุทธิ'   =>  '',
+            'ประวัติค่าเสื่อม'   =>  '',
+            'สถานะ'   =>  '',
+            'รูปภาพ'   =>  '',
+            'หมายเหตุ'   =>  '',
+            'ตัวประกอบ'   =>  '',
+            'เอกสารอ้างอิง'   =>  '',
+            'ผู้จัดทำ'   =>  '',
+            'ประวัติการซ่อม'   =>  '',
+            'รูปการซ่อม'   =>  '',
+            'แทงจำหน่าย'   =>  '',
+            'เหตุผล'   =>  '',
+       ]);
         
         if($request->hasFile('file'))
         {  
@@ -100,7 +144,7 @@ class HomeController extends Controller
         //$columns = Schema::getColumnListing('package52');
         //DB::table('package52')->where('รหัส','=',$id)->update(['รหัส' => $request->get('รหัส')]);
         
-        return back()->with('success','update successful');
+        return back()->with('success','เสร็จสิ้น');
         
     }
 
@@ -128,6 +172,29 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,['รหัส' => 'required']);
+
+        $u = Auth::user()->roles->pluck('name');
+        //return dd(Auth::user()->id,$u,$u[0]);
+        $log = new Userlog(['log_name' => 'Update',
+        'description' => $request->get('รหัส'),
+        'subject_id' => Auth::id(),
+        'subject_role' => $u[0]]);
+        $log->save();
+        DB::table('package52')->where('id','=',$id)->limit(1)->update([
+            'หน่วยงาน'   =>  $request->get('หน่วยงาน'),
+            'ประเภท'   =>  $request->get('ประเภท'),
+            'รหัส'   =>  $request->get('รหัส'),
+            'ยี่ห้อ'   =>  $request->get('ยี่ห้อ'),
+            'ชื่อผู้ขาย'   =>  $request->get('ชื่อผู้ขาย'),
+            'ที่อยู่ผู้ขาย'   =>  $request->get('ที่อยู่ผู้ขาย'),
+            'เบอร์ผู้ขาย'   =>  $request->get('เบอร์ผู้ขาย'),
+            'ประเภทเงิน'   =>  $request->get('ประเภทเงิน'),
+            'วิธีการได้มา'   =>  $request->get('วิธีการได้มา'),
+            'วันเดือนปี'   =>  $request->get('วันเดือนปี'),
+            'เอกสารเลขที่'   =>  $request->get('เอกสารเลขที่'),
+            'ชื่อรายการ'   =>  $request->get('ชื่อรายการ'),
+            'ราคาต่อหน่วย'   =>  $request->get('ราคาต่อหน่วย'),
+       ]);
         
         
         if($request->hasFile('file'))

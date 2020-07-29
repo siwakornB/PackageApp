@@ -29,7 +29,7 @@ Route::get('/packages_register', 'HomeController@Packages_register')->name('Pack
 Route::get('/search', 'HomeController@search_page')->name('search');
 Route::post('/store', 'HomeController@store')->name('store');
 Route::get('/edit/{edit}', 'HomeController@edit')->name('edit');
-Route::post('/update/{update}', 'HomeController@update')->name('update');
+Route::match(['put', 'patch'],'/update/{update}', 'HomeController@update')->name('update');
 Route::delete('/destroy/{destroy}', 'HomeController@destroy')->name('destroy');
 Route::delete('/delimg/{delimg}', 'HomeController@delimg')->name('delimg');
 
