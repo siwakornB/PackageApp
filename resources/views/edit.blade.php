@@ -6,27 +6,91 @@
         <p>{{ Session::get('success')}}</p>
     </div>
 @endif
-<div class="container col-10">
-    <form method="post" action="{{ action('HomeController@update',$id) }}" id="form" enctype='multipart/form-data'>
-        {{csrf_field()}}
-        @method('put')
-        <div class="form-group">
-        @foreach($value as $key => $row)
-            @foreach($columns as $col)
-            <p>{{ $col }}</p>
-            <input type="text" name="{{ $col }}" class="form-control" placeholder="{{$row->$col}}" value="{{$row->$col}}"/>
-            <br>
-            @endforeach
-        @endforeach
-        </div> 
-        
-        <div class="form-group">
-                <input id="file-1" type="file" name="file[]" multiple>
+<div class="container col-12">
+    
+        <form method="post" action="{{ action('HomeController@update',$id) }}" id="form" enctype='multipart/form-data'>
+            {{csrf_field()}}
+            @method('put')
+        <div class="row">
+
+        <div class="col">
+            <div class="form-group">
+                <p>หน่วยงาน</p>
+                <input type="text" name="หน่วยงาน" class="form-control" placeholder="{{$value[0]->หน่วยงาน}}" value="{{$value[0]->หน่วยงาน}}"/>
+                <br>
+            </div>
+            <div class="form-group">
+                <p>ประเภท</p>
+                <input type="text" name="ประเภท" class="form-control" placeholder="{{$value[0]->ประเภท}}" value="{{$value[0]->ประเภท}}"/>
+                <br>
+            </div> 
+            <div class="form-group">
+                <p>รหัสสินทรัพย์</p>
+                <input type="text" name="รหัส" class="form-control" placeholder="{{$value[0]->รหัส}}" value="{{$value[0]->รหัส}}"/>
+                <br>
+            </div> 
+            <div class="form-group">
+                <p>ชื่อรายการ</p>
+                <input type="text" name="ชื่อรายการ" class="form-control" placeholder="{{$value[0]->ชื่อรายการ}}" value="{{$value[0]->ชื่อรายการ}}"/>
+                <br>
+            </div> 
+            <div class="form-group">
+                <p>ยี่ห้อ</p>
+                <input type="text" name="ยี่ห้อ" class="form-control" placeholder="{{$value[0]->ยี่ห้อ}}" value="{{$value[0]->ยี่ห้อ}}"/>
+                <br>
+            </div> 
+            <div class="form-group">
+                <p>ชื่อผู้ขาย</p>
+                <input type="text" name="ชื่อผู้ขาย" class="form-control" placeholder="{{$value[0]->ชื่อผู้ขาย}}" value="{{$value[0]->ชื่อผู้ขาย}}"/>
+                <br>
+            </div> 
+            <div class="form-group">
+                <p>ที่อยู่ผู้ขาย</p>
+                <input type="text" name="ที่อยู่ผู้ขาย" class="form-control" placeholder="{{$value[0]->ที่อยู่ผู้ขาย}}" value="{{$value[0]->ที่อยู่ผู้ขาย}}"/>
+                <br>
+            </div> 
+            <div class="form-group">
+                <p>เบอร์ผู้ขาย</p>
+                <input type="text" name="เบอร์ผู้ขาย" class="form-control" placeholder="{{$value[0]->เบอร์ผู้ขาย}}" value="{{$value[0]->เบอร์ผู้ขาย}}"/>
+                <br>
+            </div>
+            <div class="form-group">
+                <p>วันที่ได้มา</p>
+                <input type="text" name="วันเดือนปี" class="form-control" placeholder="{{$value[0]->วันเดือนปี}}" value="{{$value[0]->วันเดือนปี}}"/>
+                <br>
+            </div>
+            <div class="form-group">
+                <p>เอกสารเลขที่</p>
+                <input type="text" name="เอกสารเลขที่" class="form-control" placeholder="{{$value[0]->เอกสารเลขที่}}" value="{{$value[0]->เอกสารเลขที่}}"/>
+                <br>
+            </div>
+            <div class="form-group">
+                <p>ราคาต่อหน่วย</p>
+                <input type="text" name="ราคาต่อหน่วย" class="form-control" placeholder="{{$value[0]->ราคาต่อหน่วย}}" value="{{$value[0]->ราคาต่อหน่วย}}"/>
+                <br>
+            </div>
         </div>
+        
+        <div class="col">
+            <div class="form-group">
+                <p>สินทรัพย์ได้มาโดย</p>
+                <input type="text" name="ประเภทเงิน" class="form-control" placeholder="{{$value[0]->ประเภทเงิน}}" value="{{$value[0]->ประเภทเงิน}}"/>
+                <br>
+                <p>วิธีการได้มา</p>
+                <input type="text" name="วิธีการได้มา" class="form-control" placeholder="{{$value[0]->วิธีการได้มา}}" value="{{$value[0]->วิธีการได้มา}}"/>
+                <br>
+            <div class="form-group">
+                <input id="file-1" type="file" name="file[]" multiple>
+            </div>
+            
+            </div> 
+        </div>
+    </div>
             <button type="submit" class="btn btn-primary">
             {{ __('submit') }}
             </button>
     </form>
+    
     <div class="media">
             @isset($path)
                 @foreach($path as $p => $e)
@@ -100,29 +164,5 @@
             
             
         });
-
-        $(document).ready(function () {
-
-        $('#openBtn').click(function () {
-            $('#myModal').modal({
-                show: true
-            })
-        });
-
-        $(document).on('show.bs.modal', '.modal', function (event) {
-            var zIndex = 1040 + (10 * $('.modal:visible').length);
-            console.log($(this).closest("img"));
-            $(this).css('z-index', zIndex);
-            setTimeout(function() {
-                $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-            }, 0);
-        });
-
-        
-        
-        });
-
-        
-
 </script>
 @endpush

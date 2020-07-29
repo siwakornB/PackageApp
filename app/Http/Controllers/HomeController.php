@@ -111,7 +111,7 @@ class HomeController extends Controller
         $path=DB::table('image_uploads')->select('Id','path')->where('Package_Id','=',$id)->get();
         //$path = (array)$path;
         $columns = Schema::getColumnListing('package52');
-        //return dd($path,$id);
+        //return dd($value);
         if($path)
             return view('edit',compact('value','columns','id','path'));
         else
