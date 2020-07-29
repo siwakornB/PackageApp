@@ -6,8 +6,10 @@
         <p>{{ Session::get('success')}}</p>
     </div>
 @endif
-<div class="container col-12">
-    
+<div id="edit_page" class="container col-12" style="font-family:Prompt">
+    <br>
+    <h1>รายละเอียดข้อมูลสินทรัพย์</h1>
+    <br>
         <form method="post" action="{{ action('HomeController@update',$id) }}" id="form" enctype='multipart/form-data'>
             {{csrf_field()}}
             @method('put')
@@ -70,7 +72,7 @@
                 <br>
             </div>
         </div>
-        
+
         <div class="col">
             <div class="form-group">
                 <p>สินทรัพย์ได้มาโดย</p>
