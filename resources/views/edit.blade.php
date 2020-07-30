@@ -80,8 +80,8 @@
         <div class="col">
             <div class="form-group">
                 <p>สินทรัพย์ได้มาโดย</p>
-                <input type="text" list="li" name="ประเภทเงิน" class="form-control" placeholder="{{$value[0]->ประเภทเงิน}}" value="{{$value[0]->ประเภทเงิน}}"/>
-                    <datalist id="li">
+                <input type="text" list="list" name="ประเภทเงิน" class="form-control" placeholder="{{$value[0]->ประเภทเงิน}}" value="{{$value[0]->ประเภทเงิน}}"/>
+                    <datalist id="list">
                     <option>เงินงบ</option>
                     <option>เงินรายได้</option>
                     <option>บริจาค</option>
