@@ -3,7 +3,7 @@
 @section('content')
 @if(Session::has('success'))
     <div class="alert alert-success">
-        <p>{{ Session::get('success')}}</p>
+        <strong>{{ Session::get('success')}}</strong>
     </div>
 @endif
 <div id="role_management" style="font-family:Prompt">

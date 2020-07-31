@@ -28,6 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/packages_register', 'HomeController@Packages_register')->name('Packages_register');
 Route::get('/search', 'HomeController@search_page')->name('search');
 Route::post('/store', 'HomeController@store')->name('store');
+Route::get('/show/{show}', 'HomeController@show')->name('show');
 Route::get('/edit/{edit}', 'HomeController@edit')->name('edit');
 Route::match(['put', 'patch'],'/update/{update}', 'HomeController@update')->name('update');
 Route::delete('/destroy/{destroy}', 'HomeController@destroy')->name('destroy');

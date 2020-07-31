@@ -28,28 +28,29 @@
                 <th>ชื่อรายการ</th>
                 <th>วันที่ทรัพย์สิน</th>
                 <th>ราคา/หน่วย</th>
-                @can('package-edit')
                 <th>Acions</th>
-                @endcan
             </thead>
             <tbody>
             @foreach($value as $key => $row)
                 <tr>
                 @foreach($columns as $col)
-                    @if($col != 'Id')
+                    @if($col != 'id')
                     <td>{{$row->$col}}</td>
                     @endif
                 @endforeach
-                @can('package-edit')
-                    <td><a href="{{ action('HomeController@edit',$row->Id) }}" class="btn btn-warning">แก้ไข</a>
-                        <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->Id)}}">
+                    <td><a href="{{ action('HomeController@show',$row->id) }}" class="btn btn-primary">รายละเอียด</a>
+                    
+                        @can('package-edit')
+                        <a href="{{ action('HomeController@edit',$row->id) }}" class="btn btn-warning">แก้ไข</a>
+
+                        <form method="post" class="delete_form" action="{{action('HomeController@destroy',$row->id)}}">
                         {{csrf_field()}}
 
                         @method('delete')
                         <button type="submit" class="btn btn-danger">ลบ</button>
                         </form>
+                        @endcan
                     </td>
-                @endcan
                 </tr>
             @endforeach
             </tbody>

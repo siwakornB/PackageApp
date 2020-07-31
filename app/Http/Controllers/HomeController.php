@@ -47,7 +47,7 @@ class HomeController extends Controller
         'subject_id' => Auth::id(),
         'subject_role' => $u[0]]);
         $log->save();
-        $columns = array('Id',
+        $columns = array('id',
         'รหัส',
         'ยี่ห้อ',
         'ชื่อรายการ',
@@ -58,7 +58,7 @@ class HomeController extends Controller
         //$columns = Schema::getColumnListing('package52');
         //$value = $value->toArray();
         //return dd($value);
-        return view('content',compact(['value','columns']));
+        return view('search',compact(['value','columns']));
     }
 
     public function Packages_register(){
@@ -148,11 +148,25 @@ class HomeController extends Controller
         
     }
 
+    public function show($id)
+    {
+        //$log = new Userlog('create','','','');
+        $value=DB::table('package52')->where('id','=',$id)->get();
+        $path=DB::table('image_uploads')->select('id','path')->where('Package_Id','=',$id)->get();
+        //$path = (array)$path;
+        $columns = Schema::getColumnListing('package52');
+        //return dd($value);
+        if($path)
+            return view('show',compact('value','columns','id','path'));
+        else
+            return view('show',compact('value','columns','id'));
+    }
+
     public function edit($id)
     {
         //$log = new Userlog('create','','','');
-        $value=DB::table('package52')->where('Id','=',$id)->get();
-        $path=DB::table('image_uploads')->select('Id','path')->where('Package_Id','=',$id)->get();
+        $value=DB::table('package52')->where('id','=',$id)->get();
+        $path=DB::table('image_uploads')->select('id','path')->where('Package_Id','=',$id)->get();
         //$path = (array)$path;
         $columns = Schema::getColumnListing('package52');
         //return dd($value);
@@ -230,7 +244,7 @@ class HomeController extends Controller
     {
         /*$user = FacultyUsers::find($id);
         $user->delete();*/
-        DB::table('package52')->where('รหัส', '=', $id)->delete();
+        DB::table('package52')->where('id', '=', $id)->delete();
         return back()->with("success","Element has been deleted");
     }
 
